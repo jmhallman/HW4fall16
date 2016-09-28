@@ -7,14 +7,27 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     #@user.session_token = SecureRandom.base64
+    flag = false
     
     User.all.each do |i|
       if i.user_id == @user.user_id
         flash[:notice] = "Sorry, this user id is taken. Try again."
-        redirect_to new_user_path and return
+        flag = true
+        #redirect_to new_user_path and return
       end
     end
     
+    if flag == true
+      redirect_to new_user_path and return
+    end
+    
+    #hash = {:user_id => @user.user_id, :email => @user.email}
+    #@user = User.create_user!(user_params)
+    User::create_user!(user_params)
+    flash[:notice] = "#{@user.user_id} was successfully created."
+    redirect_to movies_path
+
+=begin    
     emailRegex = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     if emailRegex =~ @user.email
       flash[:notice] = "#{@user.user_id} was successfully created."
@@ -24,6 +37,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Invalid email."
       redirect_to movies_path
     end
+=end
     
     #flash[:notice] = "#{@user.user_id} was successfully created."
     #redirect_to movies_path
