@@ -6,11 +6,12 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    #@user.session_token = SecureRandom.base64
     
     User.all.each do |i|
-      if i == @user.email
+      if i.user_id == @user.user_id
         flash[:notice] = "Sorry, this user id is taken. Try again."
-        redirect_to movies_path
+        redirect_to new_user_path and return
       end
     end
     

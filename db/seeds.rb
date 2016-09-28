@@ -6,8 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-users = [{:user_id => 'jmhallman', :email => 'jmhallman4@gmail.com'}
+users = [{:user_id => 'jmhallman', :email => 'jmhallman4@gmail.com'},
         ]
+users.each do |user|
+   User.create!(user) 
+end
 
 movies = [{:title => 'Aladdin', :rating => 'G', :release_date => '25-Nov-1992'},
     	  {:title => 'The Terminator', :rating => 'R', :release_date => '26-Oct-1984'},
