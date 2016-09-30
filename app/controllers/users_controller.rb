@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     #@user = User.create_user!(user_params)
     User::create_user!(user_params)
     flash[:notice] = "#{@user.user_id} was successfully created."
-    redirect_to movies_path
+    redirect_to login_path
 
 =begin    
     emailRegex = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
