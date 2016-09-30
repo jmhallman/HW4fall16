@@ -3,11 +3,11 @@
 = form_tag login_create_path do
 
   = label :session, :user_id, 'User-ID'
-  = text_field :session, 'user_id'
+  = text_field :session, 'user_id', :id => 'login_user'
 
   = label :session, :email, 'E-Mail'
-  = text_field :session, 'email'
+  = text_field :session, 'email', :id => 'login_email'
 
-  = submit_tag 'Login to my account'
+  = submit_tag 'Login to my account', :id => 'login_submit'
   <br>
-  = link_to "Sign up for an account", new_user_path, :method => :get
+  = link_to "Sign up for an account", new_user_path, :id => 'signup', :method => :get
